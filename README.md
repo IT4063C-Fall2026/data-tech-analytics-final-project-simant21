@@ -1,8 +1,31 @@
-# Final-Project-Template
-<!-- Edit the title above with your project title -->
+# Which Vulnerabilities Do Attackers Actually Exploit?
+
 
 ## Project Overview
+### Topic
+Security teams can't patch every vulnerability, so they need to know which ones attackers actually exploit. 
 
+### Project Questions
+1. Which CVE characteristics (CVSS severity, vendor, weakness type, age) are associated with being listed as actively exploited?
+2. Does EPSS tell us more about exploitation than CVSS does?
+3. How long does it take from a CVE's publication to its KEV listing, and does it vary by vendor or weakness type?
+
+### What an Answer Looks Like
+- Bar chart: share of CVEs in KEV by CVSS band
+- Scatter plot: EPSS vs. CVSS, with KEV CVEs highlighted
+- Box plot: days from publication to KEV listing, by vendor
+- Table: top weakness types (CWE) among KEV CVEs
+
+### Data Sources
+| Source | Type | Key fields |
+|---|---|---|
+| NVD CVE API | API | CVE ID, publish date, CVSS, CWE, vendor |
+| CISA KEV catalog | File (JSON) | CVE ID, date added, vendor/product |
+| FIRST EPSS scores | File (CSV) | CVE ID, EPSS score, percentile |
+
+**How they relate:** All three share the CVE ID. NVD is the base table, left-joined with KEV and EPSS. A CVE missing from KEV is treated as "not known exploited."
+
+**Limitations:** EPSS is a current snapshot, and KEV lists CVEs when CISA adds them, not when exploitation began.
 ## Self Assessment and Reflection
 
 <!-- Edit the following section with your self assessment and reflection -->
